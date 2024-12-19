@@ -1,0 +1,19 @@
+  <launch>   
+    <arg name="navigation" default="false"/>
+    <arg name="odom_frame_id"  default="odom_combined"/>
+
+     <!-- 开启cartographer -->
+
+    <!-- <include file="$(find cartographer_ros)/launch/demo_revo_lds.launch" />     -->
+    
+    <!-- 开启机器人底层相关节点  -->
+    <include file="$(find yd_agv_driver)/launch/ydrobot_open.launch">
+      <arg name="navigation" value="$(arg navigation)"/>
+      <arg name="is_cartographer" value="true"/>
+      <!-- <arg name="odom_frame_id"   value="$(arg odom_frame_id)"/> -->
+    </include>
+    <!-- <include file="$(find yd_agv_driver)/launch/include/ydrobot_al_gmapping.launch" />    -->
+     <include file="$(find yd_agv_driver)/launch/include/ydrobot_cartographer.launch" />
+
+    </launch>
+  

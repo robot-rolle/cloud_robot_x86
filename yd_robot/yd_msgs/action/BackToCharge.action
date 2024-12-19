@@ -1,0 +1,13 @@
+#client
+bool      BackToC
+uint8	  Id   #充电id
+---
+#server
+bool   pose_state   
+float64 VoltagePer
+
+# double UsedTime
+---
+#feedback
+uint8  RobotState                  #是否还在状态运行 运行状态
+float64 VoltagePer

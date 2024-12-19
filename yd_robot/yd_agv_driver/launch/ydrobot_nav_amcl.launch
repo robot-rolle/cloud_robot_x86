@@ -1,0 +1,35 @@
+
+   <launch>
+      <arg name="is_cartographer"  default="false"/>
+      <arg name="navigation"  default="true"/>
+      <arg name="open_control" default="true"/>
+      
+      <!-- 开启机器人底层相关节点 同时开启导航功能-->
+      <include file ="$(find yd_agv_driver)/launch/ydrobot_open.launch">
+         <arg name="navigation"  value="$(arg navigation)"/>
+         <arg name="is_cartographer" value="$(arg is_cartographer)"/>
+         
+      </include>
+  
+      <!-- 设置需要用于导航的地图  -->
+      <arg name="map_file" default="$(find yd_agv_driver)/map/big_good1_map.yaml"/>
+      <node name="map_server_test" pkg="map_server" type="map_server" args="$(arg map_file)">
+      </node>
+      
+      <!-- 开启用于导航的自适应蒙特卡洛定位amcl-->
+       <include file="$(find yd_agv_driver)/launch/include/amcl.launch" >
+            <arg name="odom" default="odom_combined"/>
+      </include>
+      <!-- <include file="$(find yd_agv_driver)/launch/include/ydrobot_cartographer_localization.launch" /> -->
+      <node name='send_mark' pkg="yd_agv_driver" type="send_mark.py"/> 
+      <!-- 控制测试节点 -->
+      <!-- <group if="$(control_test)">
+         
+      </group> -->
+      <include file="$(find yd_control)/launch/ydrobot_controller.launch">
+             <arg name="open_control" value="$(arg open_control)"/>
+      </include>
+
+    </launch>
+         
+   

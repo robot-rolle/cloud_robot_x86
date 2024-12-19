@@ -1,0 +1,7 @@
+image: /home/ydf/ydf_robot/src/yd_robot/yd_agv_driver/map/cartographer_2d_35_3.pgm
+resolution: 0.050000
+origin: [-26.066782, -18.746996, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

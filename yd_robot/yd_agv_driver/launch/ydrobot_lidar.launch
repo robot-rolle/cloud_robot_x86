@@ -1,0 +1,69 @@
+<launch>
+    <arg name="rplidar_mode"  default="ls_M10P_net" 
+    doc="opt: rplidar_A1_A2, ls_M10_PHY_Net,rplidar_S2,LTME02A,ls_M10P_net"/>
+
+    <!-- 思岚雷达参数 -->
+    <!-- 单角度分割-->
+    <!-- <param name="/rplidarNode/angle_start"         type="double" value="247"/>   服务机器人扫描起始角度 -->
+    <!-- <param name="/rplidarNode/angle_end"           type="double" value="113"/>   服务机器人扫描结束角度 -->
+
+    <!-- <param name="/rplidarNode/distance_min"        type="double" value="0.24"  /> 最小扫描距离 -->
+    <!-- <param name="/rplidarNode/distance_max"        type="double" value="10" /> 最大扫描距离 -->
+    <!--多角度分割-->
+
+    <!-- <param name="/rplidarNode/is_parted"           type="bool"   value="false"/> 
+    <param name="/rplidarNode/angle1_start"        type="double" value="26"/> 
+    <param name="/rplidarNode/angle1_end"          type="double" value="46"/> 
+    <param name="/rplidarNode/angle2_start"        type="double" value="134"/> 
+    <param name="/rplidarNode/angle2_end"          type="double" value="154"/>  
+    <param name="/rplidarNode/angle3_start"        type="double" value="206"/> 
+    <param name="/rplidarNode/angle3_end"          type="double" value="226"/> 
+    <param name="/rplidarNode/angle4_start"        type="double" value="314"/> 
+    <param name="/rplidarNode/angle4_end"          type="double" value="334"/>  -->
+ 
+    <!-- 力策雷达-->
+    <group if="$(eval rplidar_mode == 'LTME02A')">
+        <include file="$(find ltme_node)/launch/ltme02a.launch"/>
+    </group>
+    <!-- 思岚雷达参数 -->
+    <!-- 启动思岚A1/A2雷达 -->
+    <group if="$(eval rplidar_mode == 'rplidar_A1_A2')">
+        <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+    </group>
+
+    <group if="$(eval rplidar_mode == 'rplidar_S2')">
+        <include file="$(find rplidar_ros)/launch/rplidar_s2.launch"/>
+    </group>
+
+
+    <!-- 启动镭神M10_net雷达 -->
+    <group if="$(eval rplidar_mode == 'ls_M10_net')">
+        <include file="$(find lslidar_driver)/launch/lslidar_net.launch"/>
+        <param name="lslidar_driver_node/lidar_name" value="M10"/> 
+    </group>
+
+    <!-- 启动镭神M10P_net雷达 -->
+    <group if="$(eval rplidar_mode == 'ls_M10P_net')">
+        <include file="$(find lslidar_driver)/launch/lslidar_net.launch"/>
+        <param name="lslidar_driver_node/lidar_name" value="M10_P"/> 
+    </group>
+
+    <!-- 启动镭神M10P_PLUS_net雷达 -->
+    <group if="$(eval rplidar_mode == 'ls_M10P_PLUS_net')">
+        <include file="$(find lslidar_driver)/launch/lslidar_net.launch"/>
+        <param name="lslidar_driver_node/lidar_name" value="M10_PLUS"/> 
+    </group>
+    <!-- 启动镭神ls_M10_PHY_Net雷达 -->
+    <group if="$(eval rplidar_mode == 'ls_M10_PHY_Net')">
+        <include file="$(find lslidar_driver)/launch/lslidar_net.launch"/>
+        <param name="lslidar_driver_node/lidar_name" value="M10_P"/> 
+    </group>
+
+
+
+
+
+
+
+
+</launch>

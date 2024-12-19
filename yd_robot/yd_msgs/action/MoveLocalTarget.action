@@ -1,0 +1,14 @@
+#client
+float64   Speed
+geometry_msgs/Pose2D  PoseSend
+uint8	  Id   #priority 0最大可以任意抢占 7最小 0可以打断7 
+---
+#server
+bool   pose_state               
+geometry_msgs/Pose2D  PoseBack
+# double UsedTime
+---
+#feedback
+bool  workstate                 #是否还在状态运行 运行状态
+bool  targetstate               
+geometry_msgs/Pose2D  PoseNow       

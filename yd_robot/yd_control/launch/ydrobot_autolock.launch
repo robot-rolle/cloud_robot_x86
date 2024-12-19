@@ -1,0 +1,7 @@
+
+<launch>
+  <!-- turtlebot_teleop_key already has its own built in velocity smoother -->
+  <node pkg="yd_control" type="ydrobot_test_cartographer.py" name="robot_keyboard"  output="screen">
+    <remap from="robot_keyboard/cmd_vel" to="/cmd_vel"/>
+  </node>
+</launch>

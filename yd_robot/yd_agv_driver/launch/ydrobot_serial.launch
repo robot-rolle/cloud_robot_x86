@@ -1,0 +1,18 @@
+
+<launch>
+  <arg name="odom_frame_id"  default="odom_combined"/>
+  <node pkg="yd_agv_driver" type="yd_robot_node" name="yd_robot" output="screen" respawn="false">
+    <!-- 打开esp串口 -->
+    <param name="usart_port_name"        type="string" value="/dev/yd_agv_control"/>  
+    <!-- 打开uwb串口  usb名自定义 配置usb  -->
+    <!-- 串口波特率 -->
+    <param name="serial_baud_rate"       type="int"    value="115200"/>                  
+    <!-- <param name="serial_baud_rate_uwb"   type="int"    value="115200"/> -->
+      <!-- 三个坐标系上传到服务器，后面tf变换使用。 变量名   变量类型  变量值 -->
+    <param name="odom_frame_id"      type="string" value="$(arg odom_frame_id)"/> 
+    <param name="robot_frame_id"     type="string" value="base_footprint"/> 
+    <!-- <param name="gyro_frame_id"      type="string" value="gyro_link"/>  -->
+  </node>
+    <!-- 启动IMU模块 -->
+    <include file="$(find fdilink_ahrs)/launch/ahrs_data.launch"/>
+</launch>

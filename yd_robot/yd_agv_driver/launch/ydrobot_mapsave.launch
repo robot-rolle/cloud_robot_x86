@@ -1,0 +1,4 @@
+<launch>
+     <node pkg ="map_server" type="map_saver" name="ydmap_testf" args="-f /home/ydf/ydf_robot/src/yd_robot/yd_agv_driver/map/big_good1_map" output="screen">
+     </node>
+    </launch>

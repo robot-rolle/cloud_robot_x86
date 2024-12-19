@@ -1,0 +1,25 @@
+<launch>
+
+    <!-- navigation common params-->
+    <rosparam file="$(find yd_agv_driver)/param_common/local_costmap_params.yaml"      command="load" ns="move_base"/>
+    <rosparam file="$(find yd_agv_driver)/param_common/global_costmap_params.yaml"     command="load" ns="move_base"/>
+    <rosparam file="$(find yd_agv_driver)/param_common/move_base_params.yaml"          command="load" ns="move_base"/>
+    <rosparam file="$(find yd_agv_driver)/param_common/base_global_planner_param.yaml" command="load" ns="move_base"/>
+    
+    <param name="move_base/base_local_planner"    type="string" value="teb_local_planner/TebLocalPlannerROS"/>
+    <!-- <param name="move_base/base_global_planner"  value="yd_global_planner/YdPlanner"/> -->
+    <!-- <param name="move_base/base_global_planner"    value="dstar_global_planner/DStarGlobalPlanner"/> -->
+    
+    
+    <!-- move_base 参数配置接口 -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+      <rosparam file="$(find yd_agv_driver)/costmap_common_params/teb_local_planner_params.yaml"  command="load"/>
+      <!-- <rosparam file="$(find yd_agv_driver)/costmap_common_params/dstar_global_planner_params.yaml" command="load" /> -->
+      <rosparam file="$(find yd_agv_driver)/costmap_common_params/costmap_common_params.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find yd_agv_driver)/costmap_common_params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    </node>
+  
+  </launch>
+  
+  
+  

@@ -1,0 +1,27 @@
+<launch>
+
+     <node name="laser_double" pkg="laser_double" type="laser_double" output="screen">
+        <param name="frame_id"         type="string"   value="laser"/> <!--雷达输出frame_id-->
+        <param name="scan_topic"         type="string"   value="scan"/> <!--雷达输出话题-->
+        <param name="truncated_mode" value="1"/>    <!--0:两雷达不屏蔽角度 1:两雷达屏蔽角度-->
+
+        <param name="scan1_topic"         type="string"   value="scan1"/>   <!-- 雷达1话题-->
+        <param name="lidar1_rotate"    type="double"   value="0"/>       <!-- 雷达1坐标旋转角度,小车前方为0度角，正方向为顺时针-->
+        <param name="lidar1_xoffset"   type="double"   value="0.3"/>       <!-- 雷达1坐标原点x轴偏移距离-->
+        <param name="lidar1_yoffset"   type="double"   value="0.235"/>    <!-- 雷达1坐标原点y轴偏移距离-->
+        <rosparam param="disable_min1">[180]</rosparam>                      <!--雷达1屏蔽角度左值（角度顺时针方向，支持多角度屏蔽）-->
+        <rosparam param="disable_max1">[360]</rosparam>                     <!--雷达1屏蔽角度右值（角度顺时针方向，支持多角度屏蔽）-->
+
+        <param name="scan2_topic"         type="string"   value="scan2"/>  <!-- 雷达2话题-->
+        <param name="lidar2_rotate"    type="double"   value="180"/>       <!-- 雷达2坐标旋转角度,小车前方为0度角，正方向为顺时针-->
+        <param name="lidar2_xoffset"   type="double"   value="-0.3"/>      <!-- 雷达2坐标原点x轴偏移距离-->
+        <param name="lidar2_yoffset"   type="double"   value="-0.235"/>     <!-- 雷达2坐标原点y轴偏移距离-->
+        <rosparam param="disable_min2">[180]</rosparam> <!--雷达2屏蔽角度左值（角度顺时针方向，支持多角度屏蔽）-->
+        <rosparam param="disable_max2">[360]</rosparam> <!--雷达2屏蔽角度右值（角度顺时针方向，支持多角度屏蔽）-->
+    </node> 
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="base_to_laser" args="0.0 0.00 0.19 3.14 0 0  base_footprint laser 100" />  --><!--laser-->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="base_to_laser1" args="0.3 -0.235 0.19 2.355 0 0  base_footprint laser1 100" />  -->  <!--laser1-->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="base_to_laser2" args="-0.3 0.235 0.19 -0.785 0 0  base_footprint laser2 100" /> --> <!--laser2-->
+
+</launch>

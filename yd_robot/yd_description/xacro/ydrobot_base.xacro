@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot name="base" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- PROPERTY LIST -->
+    <xacro:property name="M_PI" value="3.1415926"/>
+    <xacro:property name="base_length" value="0.35"/>
+        <!-- 轮子直径 -->
+    <xacro:property name="wheel_radius" value="0.0775"/>
+        <!-- 轮子宽度 -->
+    <xacro:property name="wheel_length" value="0.04"/>
+
+    <xacro:property name="wheel_joint_y" value="0.19"/>
+
+    <material name="yellow">     
+        <color rgba="1 0.4 0 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 0.95"/>
+    </material>
+    <material name="gray">
+        <color rgba="0.75 0.75 0.75 1"/>
+    </material>
+    <!-- <xacro:include filename="$(find rm_description)/urdf/RM65/rm_65_add.urdf.xacro"/> -->
+
+        <link name="base_link">
+            <visual>
+                <origin xyz=" 0 0 0" rpy="0 0 0" />
+                <geometry>
+                     <mesh filename="package://yd_description/meshes/base_all.stl" scale="0.001 0.001 0.001"/>
+		        </geometry>
+                 <material name="gray"/>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                     <mesh filename="package://yd_description/meshes/base_all.stl" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </collision> 
+        </link>
+<!-- 
+        <xacro:rm_65 parent="base_link">
+            <origin xyz="0.15 0.0 ${base_length}" rpy="0.0 0.0 3.1415"/>
+        </xacro:rm_65> -->
+
+</robot>

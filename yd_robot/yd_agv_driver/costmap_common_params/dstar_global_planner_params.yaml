@@ -1,0 +1,12 @@
+DStarGlobalPlanner:   #参数入口
+  goal_distance_threshold: 0.3 #Maximal distance from the chassis' reference frame origin to consider the goal reached
+  neighbor_distance_threshold: 0.1 #The distance to consider as close for replanning
+  occupancy_threshold: 64  #OccupancyGrid cell weight threshold to consider the cell non-passable
+  cutoff_distance: 16    #Maximal cutoff distance for raytracing optimizer
+#   trajectory_optimizer
+  trajectory_optimizer:
+      repulsion_gain: 50.0
+      potential_field_radius: 10.0
+  erosion:
+      enable: false
+      erosion_gap: 2

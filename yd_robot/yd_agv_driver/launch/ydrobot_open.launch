@@ -1,0 +1,33 @@
+<launch>
+    <!-- Arguments参数 -->
+    <arg name="car_mode"  default="mini_diff" />
+    <arg name="navigation"  default="false"/>
+    <arg name="repeat"  default="false"/>
+    <!--  -->
+    <arg name="is_cartographer"  default="false"/>
+    
+    <arg name="odom_frame_id"  default="odom_combined"/> 
+    <!--当开启导航功能时 启用导航算法选择-->
+    <include file="$(find yd_agv_driver)/launch/ydrobot_serial.launch" unless="$(arg repeat)">
+      <arg name="odom_frame_id"  value="$(arg odom_frame_id)"/>
+    </include>
+    
+    <include file="$(find yd_agv_driver)/launch/include/teb_local_planner.launch" if="$(arg navigation)">
+    </include> 
+
+    <!-- <include file="$(find yd_agv_driver)/launch/include/dwa_local_planner.launch" if="$(arg navigation)"/> -->
+    
+
+    <!-- 发布用于建图、导航的TF关系与小车外形可视化 -->
+    <include file="$(find yd_agv_driver)/launch/ydrobot_visualization.launch" unless="$(arg repeat)">
+      <arg name="car_mode" value="$(arg car_mode)"/>
+    </include>
+    <include file="$(find yd_agv_driver)/launch/ydrobot_lidar.launch" />
+
+    <include file="$(find yd_agv_driver)/launch/include/robot_pose_ekf.launch" unless="$(arg repeat)">
+      <arg name="is_cartographer" value="$(arg is_cartographer)"/>
+    </include> 
+   </launch>
+  
+  
+  

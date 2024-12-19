@@ -1,0 +1,8 @@
+
+<launch>
+    <arg name="open_control" default="true"/>
+    <group if="$(arg open_control)">   
+        <node name="yd_control_base" pkg="yd_control"  type="yd_control_base" output="log" respawn="false" />
+        <node name="ydrobot_controls" pkg="yd_control" type="ydrobot_controls" output="log" respawn="false" />
+    </group>
+</launch>

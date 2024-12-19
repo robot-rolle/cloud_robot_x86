@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="using_markers" type="basic_block" name="basic_block" output="screen" respawn="false"></node>
+    <node pkg="rviz" name="rviz"  type="rviz" args="-d /home/ydf/ydf_robot/src/using_markers/rviz/path_plan_rrt.rviz" required="true"/>
+</launch>
